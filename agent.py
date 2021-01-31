@@ -15,13 +15,15 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 class Agent():
-    def __init__(self, state_size, action_size, random_seed):
+    def __init__(self, state_size, action_size, agent_id, random_seed):
         self.state_size = state_size
         self.action_size = action_size
+        self.agent_id = agent_id
         # Construct Actor networks
         self.actor_local = Actor(state_size, action_size, random_seed).to(device)
         self.actor_target = Actor(state_size, action_size, random_seed).to(device)
         self.actor_optimizer = optim.Adam(self.actor_local.parameters(),lr=LR_ACTOR)
+        self.complete_update(self.actor_local, self.actor_target)
 
     @staticmethod
     def complete_update(local_model, target_model):
