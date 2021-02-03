@@ -34,7 +34,7 @@ The environment is considered solved, when the average (over 100 episodes) of th
 
 ## Multi Agent DDPG
 
-Multi Agent DDPG is based on DDPG (deep deterministic policy gradients (1)), which is an actor-critic method. 
+Multi Agent DDPG (0) is based on DDPG (deep deterministic policy gradients (1)), which is an actor-critic method. 
 In DDPG the actor (which uses a neural network as function approximator) decides the action, 
 so it takes the current state as an input and returns continuous values, one for every action. 
 It is called deterministic because given a state it will return always the same action, and that is why adding noise to the action 
@@ -105,9 +105,7 @@ However, it inherits the flaws of DDPG, specifically, the instability and sensit
 initial random seeds.
 
 It was also observed that having a unique big joint critic, which would save memory between the agents, is more unstable than using a critic
-per agent. 
-
- There are still certain things that could be tested with MADDPG:
+per agent.  There are still certain things that could be tested with MADDPG:
 - Gradient inverter: The main idea is, instead of clipping the gradient using a tanh function between -1 and 1, to use a
 function that when the gradient exceeds, to change the sign but keeping the magnitude that guides the gradient.    
 - Noise networks (3) in DDPG agent.The noise topic is kind of critical and it has been demonstrated that there are better
@@ -122,9 +120,16 @@ the L1 loss (difference of absolute values) with a parameter to decide how close
 to the linear function. Using a Huber loss could help, even if it has not been proved to really make a difference. 
 
 Like all the experiments in RL, it is a matter of trial and error, and see what works better for the environment. 
-In addition, other algorithms could be used, like PPO or 
+In addition, other algorithms could be used, like PPO or multi agent A3C. Another aspect that was not exploited is to
+create code for the tennis environment and make it a competition environment. We know that collaboration would be
+a good strategy for each agent to help each other and get maximum reward, but competition is simmetric in this case.
+Competing has the same result as sharing the ball, as long as both players are competent. In this context, using an
+N-step tree (like in alpha zero), would be interesting to test.
+
+ 
 
 ## References
+* (0) [Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments] (https://arxiv.org/abs/1706.02275)
 * (1) [Experience Selection in Deep Reinforcement Learning for Control](https://jmlr.org/papers/v19/17-131.html)
 * (2) [Addressing Function Approximation Error in Actor-Critic Methods](https://arxiv.org/abs/1802.09477)
 * (3) [Noisy networks](https://arxiv.org/pdf/1706.10295.pdf)
