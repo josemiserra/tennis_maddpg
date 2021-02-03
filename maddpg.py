@@ -22,7 +22,7 @@ class MADDPG():
                  gamma=0.99,
                  update_every=2,
                  noise_start=1.0,
-                 noise_decay=0.99999999999,
+                 noise_decay=0.99999,
                  stop_noise=50000, seed = 31):
         """
         Params
@@ -70,8 +70,8 @@ class MADDPG():
         n_next_states = n_next_states.reshape(1, -1)
         self.memory.add(n_states, n_actions, n_rewards, n_next_states, n_dones)
         
-        # if t_stop_noise time steps are achieved turn off noise
-        if self.t_step > self.t_stop_noise:
+        # if stop_noise time steps are achieved turn off noise
+        if self.t_step > self.stop_noise:
             self.noise_decay = 1.0
             self.noise_factor = 1.0
         
