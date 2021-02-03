@@ -8,7 +8,7 @@
 
 ### Introduction
 
-For this project, you will work with the [Tennis](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#tennis) environment.
+This project reproduces the [Tennis](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#tennis) environment.
 
 ![Trained Agent][image1]
 
@@ -24,6 +24,38 @@ The task is episodic, and in order to solve the environment, your agents must ge
 The environment is considered solved, when the average (over 100 episodes) of those **scores** is at least +0.5.
 
 ### Getting Started
+
+
+### Getting Started
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/josemiserra/ddpg_reacher
+   ```
+2. If you don't have Anaconda or Miniconda installed, go to [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and install Miniconda in your computer (miniconda is a lightweight version of the Anaconda python environment). 
+
+3. It is recommended that you install your own environment with Conda. Follow the instructions here: [Conda environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). After that, open an anaconda command prompt or a prompt, and activate your environment.
+  ```sh
+  activate your-environment
+  ```
+4. Install the packages present in requirements.txt
+   ```sh
+   pip install requirements.txt
+   pip install mlagents
+   ```
+5. If you want to use pytorch with CUDA, it is recommmended to go to https://pytorch.org/get-started/locally/ and install pytorch following the instructions there, according to your CUDA installation.
+
+6. Move into the folder of the project, and run jupyter notebook.
+   ```sh
+    cd jupyter notebook
+   ```
+   Alternatively you can execute from the python console using the execute_train.py for training, execute_test.py for testing the result of the network.
+   ```sh
+    python execute_train.py
+    python execute_test.py
+   ```
+
+
 
 1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P3/Tennis/Tennis_Linux.zip)

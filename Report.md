@@ -60,10 +60,20 @@ In MADDPG every agent has an observation space in a continuous action space. Eac
 * Gamma: 0.99
 * Tau: 1e-3 for actor and 1e-2 for Critic
 * Iterations of learning per update step: 2
+* Noise decay rate: 0.99999999999
 
 * Architecture Actor :  statex256x256xaction
 * Architecture Critic : state+action*num_agentsx256x256x1
 * Noise: Theta - 0.15, Sigma - 0.1 but uniform distribution changed to a random normal distribution
+
+The network was trained for 5000 episodes and the environment was solved in the episode 600, as the plot shows.
+
+<figure>
+<img src="images/magent.png" alt="drawing" style="width:400px;" caption="f"/>
+<figcaption><i>Figure 1. Evolution of rewards (score) for the first 5000 episodes. The blue line is the average over the last 100 episodes, getting the maximum of the 2 agents.</i></figcaption>
+ </figure>
+
+
 
 ## Testing MADDPG
 
@@ -85,7 +95,8 @@ It has not been proven in literature to improve to add value to the learning, bu
 
 ### Noise annealing
 The initial parameters from the OUNoise (theta = 0.15 and sigma=1.0) were good, however, know how to anneal the noise was the difficult 
-part. In other words, to know the stopping point, which we fixed in 500.000 steps.
+part. In other words, to know the decreasing rate for the noise to don't go down quickly at the beginning. The annealing was fixed 
+to stop in 500.000 steps and only reduce the factor of decreasing every 2 episodes. 
 
 ## Conclusion and future improvements
 
@@ -106,8 +117,12 @@ during training to facilitate exploration.
 get better guidance for the actors. 
 - Replay buffer management. It has been shown that the way we select the experiences in the replay buffer makes a difference.
 This could be here the case, since the noise is annealed over time. 
-- HUber loss
+- Huber loss. In the original paper, instead of the quadratic error, the huber loss function is used. The huber loss is 
+the L1 loss (difference of absolute values) with a parameter to decide how close we want to get from the quadratic function
+to the linear function. Using a Huber loss could help, even if it has not been proved to really make a difference. 
 
+Like all the experiments in RL, it is a matter of trial and error, and see what works better for the environment. 
+In addition, other algorithms could be used, like PPO or 
 
 ## References
 * (1) [Experience Selection in Deep Reinforcement Learning for Control](https://jmlr.org/papers/v19/17-131.html)
