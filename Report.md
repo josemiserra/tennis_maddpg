@@ -60,16 +60,16 @@ In MADDPG every agent has an observation space in a continuous action space. Eac
 * Gamma: 0.99
 * Tau: 1e-3 for actor and 1e-2 for Critic
 * Iterations of learning per update step: 2
-* Noise decay rate: 0.99999999999
+* Noise decay rate: 0.99999
 
 * Architecture Actor :  statex256x256xaction
 * Architecture Critic : state+action*num_agentsx256x256x1
 * Noise: Theta - 0.15, Sigma - 0.1 but uniform distribution changed to a random normal distribution
 
-The network was trained for 2000 episodes and the environment was solved in the episode 600, as the plot shows.
+The network was trained for 2000 episodes and the environment was solved close to the episode 600, as the plot shows.
 
 <figure>
-<img src="images/magent.png" alt="drawing" style="width:400px;" caption="f"/>
+<img src="images/plot.png" alt="drawing" style="width:400px;" caption="f"/>
 <figcaption><i>Figure 1. Evolution of rewards (score) for the first 2000 episodes. The blue line is the average over the last 100 episodes, getting the maximum of the 2 agents.</i></figcaption>
  </figure>
 
